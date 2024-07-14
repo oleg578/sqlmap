@@ -20,7 +20,7 @@ func TestRowsToJson(t *testing.T) {
 			mockFunc: func() *sql.Rows {
 				db, mock, _ := sqlmock.New()
 				defer db.Close()
-				rows := sqlmock.NewRows([]string{"Col1", "Col2"})
+				rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
 				rows.AddRow("Dummy_1", 1)
 				rows.AddRow("Dummy_2", 2)
 				rows.AddRow("Dummy_3", 3)
@@ -28,7 +28,7 @@ func TestRowsToJson(t *testing.T) {
 				rs, _ := db.Query("SELECT 1")
 				return rs
 			},
-			expected: []byte(`[{"Col1":"Dummy_1","Col2":1},{"Col1":"Dummy_2","Col2":2},{"Col1":"Dummy_3","Col2":3}]`),
+			expected: []byte(`[{"Column_1":"Dummy_1","Column_2":1},{"Column_1":"Dummy_2","Column_2":2},{"Column_1":"Dummy_3","Column_2":3}]`),
 		},
 		{
 			name: "Failure - Columns error",
@@ -69,7 +69,7 @@ func TestRowsToJson(t *testing.T) {
 func BenchmarkRowsToJson(b *testing.B) {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
-	rows := sqlmock.NewRows([]string{"Col1", "Col2"})
+	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
 	rows.AddRow("Dummy_1", 1)
 	rows.AddRow("Dummy_2", 2)
 	rows.AddRow("Dummy_3", 3)
