@@ -5,9 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
-	"strings"
+	"regexp"
 )
 
+// RowsToJson converts the result of a SQL query (sql.Rows) into a JSON encoded byte array.
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if rows == nil {
 		return nil, fmt.Errorf("rows is nil")
@@ -39,7 +40,9 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	return json.Marshal(result)
 }
 
-// Returns slice of pointers
+// createPtrs creates two slices of interfaces.
+// The first slice has a length of num and built for values.
+// The second slice has the same length and contain pointers to values of previous slice
 func createPtrs(num int) ([]interface{}, []interface{}) {
 	vals := make([]interface{}, num)
 	ptrs := make([]interface{}, num)
@@ -49,14 +52,17 @@ func createPtrs(num int) ([]interface{}, []interface{}) {
 	return vals, ptrs
 }
 
+// spaceToUnderscore replaces all space characters in the input string with underscores.
 func spaceToUnderscore(input string) string {
-	return strings.Replace(input, " ", "_", -1)
+	re := regexp.MustCompile(`\s`)
+	return re.ReplaceAllString(input, "_")
 }
 
-// buildStruct takes in a map of field names and their corresponding types, and creates a new struct type
-// with the specified field names and types. It returns the created struct type as a 'reflect.Type'.
-// The field names are used as the struct field names, and the field types are used as the struct field types.
-// The struct field tags are set with `json` tags using the field names.
+// buildStruct takes a slice of SQL column types and
+// returns a new 'reflect.Type' representing a struct with fields
+// corresponding to the columns, where the field names are converted from spaces
+// to underscores and tagged with json tags.
+// Example: buildStruct(columns []*sql.ColumnType) reflect.Type
 func buildStruct(columns []*sql.ColumnType) reflect.Type {
 	var structFields []reflect.StructField
 	for _, col := range columns {
