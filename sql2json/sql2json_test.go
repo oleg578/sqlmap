@@ -20,13 +20,15 @@ func TestRowsToJson(t *testing.T) {
 			mockFunc: func() *sql.Rows {
 				db, mock, _ := sqlmock.New()
 				defer db.Close()
-				rows := sqlmock.NewRows([]string{"Col1", "Col2"}).
-					AddRow("Dummy", 1)
+				rows := sqlmock.NewRows([]string{"Col1", "Col2"})
+				rows.AddRow("Dummy_1", 1)
+				rows.AddRow("Dummy_2", 2)
+				rows.AddRow("Dummy_3", 3)
 				mock.ExpectQuery("SELECT").WillReturnRows(rows)
 				rs, _ := db.Query("SELECT 1")
 				return rs
 			},
-			expected: []byte(`[{"Col1":"Dummy","Col2":1}]`),
+			expected: []byte(`[{"Col1":"Dummy_1","Col2":1},{"Col1":"Dummy_2","Col2":2},{"Col1":"Dummy_3","Col2":3}]`),
 		},
 		{
 			name: "Failure - Columns error",
@@ -62,4 +64,23 @@ func TestRowsToJson(t *testing.T) {
 			}
 		})
 	}
+}
+
+func BenchmarkRowsToJson(b *testing.B) {
+	db, mock, _ := sqlmock.New()
+	defer db.Close()
+	rows := sqlmock.NewRows([]string{"Col1", "Col2"})
+	rows.AddRow("Dummy_1", 1)
+	rows.AddRow("Dummy_2", 2)
+	rows.AddRow("Dummy_3", 3)
+	mock.ExpectQuery("SELECT").WillReturnRows(rows)
+	rs, _ := db.Query("SELECT 1")
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		_, _ = sql2json.RowsToJson(rs)
+	}
+
+	b.StopTimer()
 }
