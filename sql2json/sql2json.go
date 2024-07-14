@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
@@ -16,13 +17,17 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	}
 	result := make([]map[string]interface{}, 0)
 	values, valuePtrs := createPtrs(len(columns))
-	rowMap := make(map[string]interface{})
 	for rows.Next() {
 		if err := rows.Scan(valuePtrs...); err != nil {
 			return nil, err
 		}
+		rowMap := make(map[string]interface{})
 		for i, col := range columns {
-			rowMap[col] = assignCellValue(values[i])
+			colName, err := spaceToUnderscore(col)
+			if err != nil {
+				return nil, err
+			}
+			rowMap[colName] = assignCellValue(values[i])
 		}
 		result = append(result, rowMap)
 	}
@@ -47,4 +52,15 @@ func createPtrs(num int) ([]interface{}, []interface{}) {
 		ptrs[i] = &vals[i]
 	}
 	return vals, ptrs
+}
+
+func spaceToUnderscore(input string) (string, error) {
+	// Compile the regex to match spaces
+	re, err := regexp.Compile(`\s`)
+	if err != nil {
+		return "", err
+	}
+	// Replace all spaces with underscores
+	result := re.ReplaceAllString(input, "_")
+	return result, nil
 }
