@@ -3,6 +3,7 @@ package sql2json_test
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"sql2json"
 	"testing"
@@ -70,9 +71,9 @@ func BenchmarkRowsToJson(b *testing.B) {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	rows.AddRow("Dummy_1", 1)
-	rows.AddRow("Dummy_2", 2)
-	rows.AddRow("Dummy_3", 3)
+	for i := 0; i < 1000; i++ {
+		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
+	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 
