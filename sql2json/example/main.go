@@ -31,7 +31,7 @@ func printMemUsage() {
 	fmt.Printf("Alloc = %v MiB", m.Alloc/1024/1024)
 	fmt.Printf("\tTotalAlloc = %v MiB", m.TotalAlloc/1024/1024)
 	fmt.Printf("\tHeapAlloc = %v MiB", m.HeapAlloc/1024/1024)
-	fmt.Printf("\tStackInuse = %v MiB", m.StackInuse/1024/1024)
-	fmt.Printf("\tSys = %v MiB", m.Sys/1024/1024)
+	fmt.Printf("\tStackInuse = %v Kb", m.StackInuse/1024)
+	fmt.Printf("\tSys = %v Kb", m.Sys/1024)
 	fmt.Printf("\tNumGC = %v\n", m.NumGC)
 }
