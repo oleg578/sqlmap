@@ -8,21 +8,45 @@ import (
 )
 
 func main() {
+	Reflection()
+	runtime.GC()
+	Mapping()
+}
+
+func Mapping() {
+	fmt.Println("mapping ...")
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 
-	out, err := sql2json.RowsToJson(rs)
+	_, err := sql2json.RowsToJsonMapping(rs)
 	if err != nil {
 		panic(err)
 	}
 	printMemUsage()
-	fmt.Println(len(out))
+}
+
+func Reflection() {
+	fmt.Println("reflection ...")
+	db, mock, _ := sqlmock.New()
+	defer db.Close()
+	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
+	for i := 0; i < 10_000_000; i++ {
+		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
+	}
+	mock.ExpectQuery("SELECT").WillReturnRows(rows)
+	rs, _ := db.Query("SELECT 1")
+
+	_, err := sql2json.RowsToJsonReflection(rs)
+	if err != nil {
+		panic(err)
+	}
+	printMemUsage()
 }
 
 func printMemUsage() {
