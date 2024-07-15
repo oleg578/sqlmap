@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/oleg578/sqlmap/sql2json"
 	"runtime"
-	"sql2json"
 	"testing"
 )
 
