@@ -1,4 +1,4 @@
-module sql2json
+module github.com/oleg578/sqlmap/sql2json
 
 go 1.22
 
