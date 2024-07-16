@@ -20,7 +20,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if len(columns) == 0 {
 		return nil, fmt.Errorf("no columns found")
 	}
-	result := make([]interface{}, 0)
+	var result []interface{}
 	values, valuePtrs := createPtrs(len(columns))
 	structRow := buildStruct(columns)
 	for rows.Next() {
