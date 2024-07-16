@@ -15,7 +15,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	result := make([]map[string]interface{}, 0)
+	var result []map[string]interface{}
 	values, valuePtrs := createPtrs(len(columns))
 	for rows.Next() {
 		if err := rows.Scan(valuePtrs...); err != nil {
