@@ -5,6 +5,7 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"runtime"
 	"sql2json"
+	"time"
 )
 
 func main() {
@@ -23,11 +24,15 @@ func Mapping() {
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
-
+	// start time
+	startTime := time.Now()
 	_, err := sql2json.RowsToJsonMapping(rs)
 	if err != nil {
 		panic(err)
 	}
+	//end time
+	endTime := time.Now()
+	fmt.Printf("Execution Time = %v\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 }
 
@@ -41,11 +46,15 @@ func Reflection() {
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
-
+	// start time
+	startTime := time.Now()
 	_, err := sql2json.RowsToJsonReflection(rs)
 	if err != nil {
 		panic(err)
 	}
+	//end time
+	endTime := time.Now()
+	fmt.Printf("Execution Time = %v\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 }
 
