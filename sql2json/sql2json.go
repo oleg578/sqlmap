@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"regexp"
+	"sync"
 )
 
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
@@ -21,15 +22,20 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		if err := rows.Scan(valuePtrs...); err != nil {
 			return nil, err
 		}
-		rowMap := make(map[string]interface{})
+		rowMap := struct {
+			sync.RWMutex
+			r map[string]interface{}
+		}{r: make(map[string]interface{})}
+		rowMap.Lock()
 		for i, col := range columns {
 			colName, err := spaceToUnderscore(col)
 			if err != nil {
 				return nil, err
 			}
-			rowMap[colName] = assignCellValue(values[i])
+			rowMap.r[colName] = assignCellValue(values[i])
 		}
-		result = append(result, rowMap)
+		result = append(result, rowMap.r)
+		rowMap.Unlock()
 	}
 	if err := rows.Err(); err != nil {
 		return nil, err
