@@ -12,7 +12,7 @@ func main() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
