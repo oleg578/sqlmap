@@ -14,7 +14,7 @@ func main() {
 }
 
 func Process() {
-	fmt.Println("reflection ...")
+	fmt.Println("process ...")
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
