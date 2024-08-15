@@ -23,7 +23,7 @@ func main() {
 		panic(err)
 	}
 	endTime := time.Now()
-	fmt.Printf("Elapsed time: %s\n", endTime.Sub(startTime).Milliseconds())
+	fmt.Printf("Elapsed time: %v\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 
 }
