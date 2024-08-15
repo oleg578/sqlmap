@@ -28,3 +28,15 @@ type SomeStruct struct {
 But, when we call data like "SELECT * from `table_name`", we can't create the structure in advance.
 
 So, using RowsToJson function we can encode response into JSON.
+
+### tests result for 10_000_000 rows
+
+#### standard (structure way)
+Elapsed Time = 3193<br>
+Alloc = 2600 MiB        TotalAlloc = 5387 MiB   HeapAlloc = 2600 MiB    StackInuse = 544 Kb     Sys = 3356033 Kb        NumGC = 17
+#### mapping
+Elapsed Time = 31793<br>
+Alloc = 8269 MiB        TotalAlloc = 24469 MiB  HeapAlloc = 8269 MiB    StackInuse = 608 Kb     Sys = 9293062 Kb        NumGC = 25
+##### reflect
+Elapsed time: 29106<br>
+Alloc = 2871 MiB        TotalAlloc = 21040 MiB  HeapAlloc = 2871 MiB    StackInuse = 544 Kb     Sys = 4467661 Kb        NumGC = 32
