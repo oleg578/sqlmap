@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/oleg578/sqlmap/sql2json"
@@ -18,19 +17,11 @@ func main() {
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 
-	out, err := sql2json.RowsToJson(rs)
+	_, err := sql2json.RowsToJson(rs)
 	if err != nil {
 		panic(err)
 	}
 	printMemUsage()
-	//unmarshall out and print it
-	var result []map[string]interface{}
-	err = json.Unmarshal(out, &result)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(result)
-
 }
 
 func printMemUsage() {
