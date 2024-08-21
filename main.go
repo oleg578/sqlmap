@@ -18,7 +18,7 @@ func Process() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	for i := 0; i < 10_000_000; i++ {
+	for i := 0; i < 3; i++ {
 		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
@@ -26,7 +26,7 @@ func Process() {
 	// start time
 	startTime := time.Now()
 	// process rows
-	_, err := RowsToJson(rs)
+	res, err := RowsToJson(rs)
 	if err != nil {
 		panic(err)
 	}
@@ -34,6 +34,7 @@ func Process() {
 	endTime := time.Now()
 	fmt.Printf("Execution Time = %v\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
+	fmt.Println(string(res))
 }
 
 type Dummy struct {
@@ -46,8 +47,8 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if rows == nil {
 		return nil, fmt.Errorf("rows is nil")
 	}
+	var rec = Dummy{}
 	for rows.Next() {
-		var rec = Dummy{}
 		if err := rows.Scan(&rec.Column1, &rec.Column2); err != nil {
 			return nil, err
 		}
