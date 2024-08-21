@@ -36,11 +36,12 @@ func Process() {
 	printMemUsage()
 }
 
+type Dummy struct {
+	Column1 string
+	Column2 string
+}
+
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
-	type Dummy struct {
-		Column1 string
-		Column2 string
-	}
 	var result = make([]Dummy, 0)
 	if rows == nil {
 		return nil, fmt.Errorf("rows is nil")
