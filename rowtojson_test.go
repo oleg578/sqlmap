@@ -28,4 +28,5 @@ func BenchmarkRowsToJson(b *testing.B) {
 			b.Fatalf("an error '%s' occurred during RowsToJson execution", err)
 		}
 	}
+	b.StopTimer()
 }
