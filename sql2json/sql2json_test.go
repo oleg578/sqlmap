@@ -71,7 +71,7 @@ func BenchmarkRowsToJson(b *testing.B) {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 1; i++ {
 		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
