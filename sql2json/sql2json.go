@@ -30,7 +30,11 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		rowVal := reflect.New(structRow).Elem()
 		// Set the values of the struct fields
 		for i, col := range columns {
-			rowVal.FieldByName(spaceToUnderscore(col.Name())).Set(reflect.ValueOf(values[i]))
+			val := reflect.ValueOf(values[i])
+			if !val.IsValid() {
+				val = reflect.ValueOf("null")
+			}
+			rowVal.FieldByName(spaceToUnderscore(col.Name())).Set(val)
 		}
 		result = append(result, rowVal.Interface())
 	}
