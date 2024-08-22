@@ -1,9 +1,9 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/go-faker/faker/v4"
 	"runtime"
 	"sql2json"
 	"time"
@@ -12,10 +12,12 @@ import (
 func main() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
-	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-	for i := 0; i < 1; i++ {
-		rows.AddRow(fmt.Sprintf("Dummy_%d", i), sql.NullInt64{})
+	rows := sqlmock.NewRows([]string{"Id", "Name", "Salary", "Hours", "Date"})
+	for i := 0; i < 10; i++ {
+		rows.AddRow(i, faker.FirstName(), 1000.00*i+(i*678), i*8, faker.Timestamp())
 	}
+	//add null data
+	rows.AddRow(10, nil, nil, nil, nil)
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 	startTime := time.Now()
