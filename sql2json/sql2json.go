@@ -48,8 +48,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 // The first slice has a length of num and built for values.
 // The second slice has the same length and contain pointers to values of previous slice
 func createPtrs(num int) ([]interface{}, []interface{}) {
-	vals := make([]interface{}, num)
-	ptrs := make([]interface{}, num)
+	vals, ptrs := make([]interface{}, num), make([]interface{}, num)
 	for i := range vals {
 		ptrs[i] = &vals[i]
 	}
