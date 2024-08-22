@@ -15,7 +15,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	}
 	columns, err := rows.ColumnTypes()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error fetching column types: %w", err)
 	}
 	if len(columns) == 0 {
 		return nil, fmt.Errorf("no columns found")
@@ -25,7 +25,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	structRow := buildStruct(columns)
 	for rows.Next() {
 		if err := rows.Scan(valuePtrs...); err != nil {
-			return nil, err
+			return nil, fmt.Errorf("error scanning rows: %w", err)
 		}
 		rowVal := reflect.New(structRow).Elem()
 		// Set the values of the struct fields
@@ -39,7 +39,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		result = append(result, rowVal.Interface())
 	}
 	if err := rows.Err(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error iterating over rows: %w", err)
 	}
 	return json.Marshal(result)
 }
