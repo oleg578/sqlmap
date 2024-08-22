@@ -32,7 +32,7 @@ func Process() {
 	}
 	//end time
 	endTime := time.Now()
-	fmt.Printf("Execution Time = %v\n", endTime.Sub(startTime).Milliseconds())
+	fmt.Printf("Execution Time = %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 }
 
