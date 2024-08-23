@@ -1,8 +1,8 @@
 package sql2json
 
 import (
+	"bytes"
 	"database/sql"
-	"encoding/json"
 	"fmt"
 	"regexp"
 )
@@ -15,26 +15,49 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	result := make([]map[string]interface{}, 0)
-	values, valuePtrs := createPtrs(len(columns))
+	var resData []byte
+	res := bytes.NewBuffer(resData)
+	defer res.Reset()
+	res.WriteRune('[')
+
+	values, valuesPtr := createPtrs(len(columns))
 	for rows.Next() {
-		if err := rows.Scan(valuePtrs...); err != nil {
+		if err := rows.Scan(valuesPtr...); err != nil {
 			return nil, err
 		}
-		rowMap := make(map[string]interface{})
-		for i, col := range columns {
-			colName, err := spaceToUnderscore(col)
-			if err != nil {
-				return nil, err
-			}
-			rowMap[colName] = assignCellValue(values[i])
-		}
-		result = append(result, rowMap)
+		res.Write(SerializeRow(columns, values))
+		res.WriteRune(',')
 	}
+	res.Truncate(res.Len() - 1)
 	if err := rows.Err(); err != nil {
+		res.Reset()
 		return nil, err
 	}
-	return json.Marshal(result)
+	res.WriteRune(']')
+	return res.Bytes(), nil
+}
+
+func SerializeRow(columns []string, values []interface{}) []byte {
+	var data []byte
+	buff := bytes.NewBuffer(data)
+	buff.WriteRune('{')
+	for i, _ := range columns {
+		buff.WriteString(fmt.Sprintf("\"%v\"", spaceToUnderscore(columns[i])))
+		buff.WriteRune(':')
+		switch values[i].(type) {
+		case string:
+			buff.WriteString(fmt.Sprintf("\"%v\"", values[i]))
+		case nil:
+			buff.WriteString(fmt.Sprint("\"null\""))
+		default:
+			buff.WriteString(fmt.Sprintf("%v", values[i]))
+		}
+		if i < len(columns)-1 {
+			buff.WriteRune(',')
+		}
+	}
+	buff.WriteRune('}')
+	return buff.Bytes()
 }
 
 func assignCellValue(val interface{}) interface{} {
@@ -54,13 +77,13 @@ func createPtrs(num int) ([]interface{}, []interface{}) {
 	return vals, ptrs
 }
 
-func spaceToUnderscore(input string) (string, error) {
+func spaceToUnderscore(input string) string {
 	// Compile the regex to match spaces
 	re, err := regexp.Compile(`\s`)
 	if err != nil {
-		return "", err
+		return input
 	}
 	// Replace all spaces with underscores
 	result := re.ReplaceAllString(input, "_")
-	return result, nil
+	return result
 }
