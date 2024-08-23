@@ -64,7 +64,7 @@ func TestRowsToJson(t *testing.T) {
 				rs, _ := db.Query("SELECT 1")
 				return rs
 			},
-			expected: []byte(`[{"Col1":"Dummy_1","Col2":1},{"Col1":"Dummy_2","Col2":"null"},{"Col1":"Dummy_3","Col2":3}]`),
+			expected: []byte(`[{"Col1":"Dummy_1","Col2":1},{"Col1":"Dummy_2","Col2":null},{"Col1":"Dummy_3","Col2":3}]`),
 		},
 	}
 
