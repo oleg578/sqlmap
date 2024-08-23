@@ -22,7 +22,12 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		return nil, errors.New("no columns found")
 	}
 	result := make([]interface{}, 0)
-	values, valuePtrs := createPtrs(len(columns))
+	//_, valuePtrs := createPtrs(len(columns))
+	num := len(columns)
+	values, valuePtrs := make([]interface{}, num), make([]interface{}, num)
+	for i := range values {
+		valuePtrs[i] = &values[i]
+	}
 	structRow := buildStruct(columns)
 	for rows.Next() {
 		if err := rows.Scan(valuePtrs...); err != nil {
@@ -31,11 +36,12 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		rowVal := reflect.New(structRow).Elem()
 		// Set the values of the struct fields
 		for i, col := range columns {
-			val := reflect.ValueOf(values[i])
-			if !val.IsValid() {
-				val = reflect.ValueOf("null")
+			val := reflect.ValueOf(*(valuePtrs[i].(*interface{})))
+			if val.IsValid() {
+				rowVal.FieldByName(normalizeName(col.Name())).Set(val)
+			} else {
+				rowVal.FieldByName(normalizeName(col.Name())).SetZero()
 			}
-			rowVal.FieldByName(normalizeName(col.Name())).Set(val)
 		}
 		result = append(result, rowVal.Interface())
 	}
