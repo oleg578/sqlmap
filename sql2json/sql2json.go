@@ -22,7 +22,6 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		return nil, errors.New("no columns found")
 	}
 	result := make([]interface{}, 0)
-	//_, valuePtrs := createPtrs(len(columns))
 	num := len(columns)
 	values, valuePtrs := make([]interface{}, num), make([]interface{}, num)
 	for i := range values {
@@ -49,17 +48,6 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		return nil, err
 	}
 	return json.Marshal(result)
-}
-
-// createPtrs creates two slices of interfaces.
-// The first slice has a length of num and built for values.
-// The second slice has the same length and contain pointers to values of previous slice
-func createPtrs(num int) ([]interface{}, []interface{}) {
-	vals, ptrs := make([]interface{}, num), make([]interface{}, num)
-	for i := range vals {
-		ptrs[i] = &vals[i]
-	}
-	return vals, ptrs
 }
 
 // normalizeName replaces all space characters in the input string with underscores.
