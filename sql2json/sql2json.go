@@ -3,29 +3,30 @@ package sql2json
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
+	"errors"
 	"reflect"
 	"regexp"
+	"strings"
 )
 
 // RowsToJson converts the result of a SQL query (sql.Rows) into a JSON encoded byte array.
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if rows == nil {
-		return nil, fmt.Errorf("rows is nil")
+		return nil, errors.New("rows is nil")
 	}
 	columns, err := rows.ColumnTypes()
 	if err != nil {
-		return nil, fmt.Errorf("error fetching column types: %w", err)
+		return nil, err
 	}
 	if len(columns) == 0 {
-		return nil, fmt.Errorf("no columns found")
+		return nil, errors.New("no columns found")
 	}
 	result := make([]interface{}, 0)
 	values, valuePtrs := createPtrs(len(columns))
 	structRow := buildStruct(columns)
 	for rows.Next() {
 		if err := rows.Scan(valuePtrs...); err != nil {
-			return nil, fmt.Errorf("error scanning rows: %w", err)
+			return nil, err
 		}
 		rowVal := reflect.New(structRow).Elem()
 		// Set the values of the struct fields
@@ -34,12 +35,12 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 			if !val.IsValid() {
 				val = reflect.ValueOf("null")
 			}
-			rowVal.FieldByName(spaceToUnderscore(col.Name())).Set(val)
+			rowVal.FieldByName(normalizeName(col.Name())).Set(val)
 		}
 		result = append(result, rowVal.Interface())
 	}
 	if err := rows.Err(); err != nil {
-		return nil, fmt.Errorf("error iterating over rows: %w", err)
+		return nil, err
 	}
 	return json.Marshal(result)
 }
@@ -55,9 +56,11 @@ func createPtrs(num int) ([]interface{}, []interface{}) {
 	return vals, ptrs
 }
 
-// spaceToUnderscore replaces all space characters in the input string with underscores.
-func spaceToUnderscore(input string) string {
+// normalizeName replaces all space characters in the input string with underscores.
+func normalizeName(input string) string {
 	re := regexp.MustCompile(`\s`)
+	// capitalize first symbol of input
+	input = strings.ToUpper(input[:1]) + input[1:]
 	return re.ReplaceAllString(input, "_")
 }
 
@@ -69,7 +72,7 @@ func spaceToUnderscore(input string) string {
 func buildStruct(columns []*sql.ColumnType) reflect.Type {
 	var structFields []reflect.StructField
 	for _, col := range columns {
-		name := spaceToUnderscore(col.Name())
+		name := normalizeName(col.Name())
 		structFields = append(structFields, reflect.StructField{
 			Name: name,
 			Type: col.ScanType(),
