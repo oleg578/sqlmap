@@ -3,10 +3,8 @@ package sql2json_test
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/oleg578/sqlmap/sql2json"
-	"runtime"
 	"testing"
 )
 
@@ -83,48 +81,4 @@ func BenchmarkRowsToJson(b *testing.B) {
 	}
 
 	b.StopTimer()
-}
-
-func TestRowsToJsonMem(t *testing.T) {
-	tt := []struct {
-		name        string
-		mockFunc    func() *sql.Rows
-		expected    []byte
-		expectedErr error
-	}{
-		{
-			name: "Success",
-			mockFunc: func() *sql.Rows {
-				db, mock, _ := sqlmock.New()
-				defer db.Close()
-				rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
-				for i := 0; i < 1000000; i++ {
-					rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
-				}
-				mock.ExpectQuery("SELECT").WillReturnRows(rows)
-				rs, _ := db.Query("SELECT 1")
-				return rs
-			},
-			//expected: []byte(`[{"Column_1":"Dummy_1","Column_2":1},{"Column_1":"Dummy_2","Column_2":2},{"Column_1":"Dummy_3","Column_2":3}]`),
-		},
-	}
-
-	for _, tc := range tt {
-		t.Run(tc.name, func(t *testing.T) {
-			_, err := sql2json.RowsToJson(tc.mockFunc())
-			if err != nil {
-				t.Errorf("got error %v", err)
-			}
-			printMemUsage()
-		})
-	}
-}
-
-func printMemUsage() {
-	var m runtime.MemStats
-	runtime.ReadMemStats(&m)
-	fmt.Printf("Alloc = %v MiB", m.Alloc/1024/1024)
-	fmt.Printf("\tTotalAlloc = %v MiB", m.TotalAlloc/1024/1024)
-	fmt.Printf("\tSys = %v MiB", m.Sys/1024/1024)
-	fmt.Printf("\tNumGC = %v\n", m.NumGC)
 }
