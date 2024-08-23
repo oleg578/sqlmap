@@ -17,7 +17,6 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	}
 	var resData []byte
 	res := bytes.NewBuffer(resData)
-	defer res.Reset()
 	res.WriteRune('[')
 
 	values, valuesPtr := createPtrs(len(columns))
@@ -28,10 +27,12 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		res.Write(SerializeRow(columns, values))
 		res.WriteRune(',')
 	}
-	res.Truncate(res.Len() - 1)
 	if err := rows.Err(); err != nil {
 		res.Reset()
 		return nil, err
+	}
+	if res.Len() > 1 {
+		res.Truncate(res.Len() - 1)
 	}
 	res.WriteRune(']')
 	return res.Bytes(), nil
