@@ -21,7 +21,7 @@ func TestRowsToJson(t *testing.T) {
 			mockFunc: func() *sql.Rows {
 				db, mock, _ := sqlmock.New()
 				defer db.Close()
-				rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
+				rows := sqlmock.NewRows([]string{"column 1", "Column 2"})
 				rows.AddRow("Dummy_1", 1)
 				rows.AddRow("Dummy_2", 2)
 				rows.AddRow("Dummy_3", 3)
