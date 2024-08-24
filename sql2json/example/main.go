@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/go-faker/faker/v4"
+	"log"
 	"runtime"
 	"sql2json"
 	"time"
@@ -14,7 +15,7 @@ func main() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Id", "Name", "Salary", "Hours", "Date"})
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(i, faker.FirstName(), 1000.00*i+(i*678)%MOD, i*8%MOD, faker.Timestamp())
 	}
 	//add null data
@@ -22,15 +23,33 @@ func main() {
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 	startTime := time.Now()
-	msg, err := sql2json.RowsToJson(rs)
-	if err != nil {
-		panic(err)
+	c, errCh := sql2json.RowsToJson(rs)
+
+	for {
+		select {
+		case r, ok := <-c:
+			if !ok {
+				c = nil
+			} else {
+				_ = r
+			}
+		case err, ok := <-errCh:
+			if ok {
+				log.Printf("Error: %s", err)
+			} else {
+				errCh = nil
+			}
+		}
+
+		// Exit the loop when both channels are closed
+		if c == nil && errCh == nil {
+			break
+		}
 	}
+
 	endTime := time.Now()
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
-	fmt.Println(len(msg))
-	fmt.Println(string(msg))
 }
 
 func printMemUsage() {
