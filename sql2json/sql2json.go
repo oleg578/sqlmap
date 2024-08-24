@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
@@ -23,10 +24,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 		}
 		rowMap := make(map[string]interface{})
 		for i, col := range columns {
-			colName, err := spaceToUnderscore(col)
-			if err != nil {
-				return nil, err
-			}
+			colName := normalizeName(col)
 			rowMap[colName] = assignCellValue(values[i])
 		}
 		result = append(result, rowMap)
@@ -54,13 +52,10 @@ func createPtrs(num int) ([]interface{}, []interface{}) {
 	return vals, ptrs
 }
 
-func spaceToUnderscore(input string) (string, error) {
-	// Compile the regex to match spaces
-	re, err := regexp.Compile(`\s`)
-	if err != nil {
-		return "", err
-	}
-	// Replace all spaces with underscores
-	result := re.ReplaceAllString(input, "_")
-	return result, nil
+// normalizeName Replaces spaces with underscores in the column names and capitalizes the first letter.
+func normalizeName(input string) string {
+	re := regexp.MustCompile(`\s`)
+	// capitalize first symbol of input
+	input = strings.ToUpper(input[:1]) + input[1:]
+	return re.ReplaceAllString(input, "_")
 }
