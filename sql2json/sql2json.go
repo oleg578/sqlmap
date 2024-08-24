@@ -54,7 +54,7 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	return json.Marshal(result)
 }
 
-// normalizeName replaces all space characters in the input string with underscores.
+// normalizeName Replaces spaces with underscores in the column names and capitalizes the first letter.
 func normalizeName(input string) string {
 	re := regexp.MustCompile(`\s`)
 	// capitalize first symbol of input
