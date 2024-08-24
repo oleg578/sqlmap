@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/go-faker/faker/v4"
-	"github.com/oleg578/sqlmap/sql2json"
 	"runtime"
+	"sql2json"
 	"time"
 )
 

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/oleg578/sqlmap/sql2json"
+	"sql2json"
 	"testing"
 )
 
