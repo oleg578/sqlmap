@@ -2,7 +2,6 @@ package sql2json
 
 import (
 	"database/sql"
-	"encoding/json"
 	"errors"
 	"reflect"
 	"regexp"
@@ -10,48 +9,56 @@ import (
 )
 
 // RowsToJson converts the result of a SQL query (sql.Rows) into a JSON encoded byte array.
-func RowsToJson(rows *sql.Rows) ([]byte, error) {
-	if rows == nil {
-		return nil, errors.New("rows is nil")
-	}
-	columns, err := rows.ColumnTypes()
-	if err != nil {
-		return nil, err
-	}
-	if len(columns) == 0 {
-		return nil, errors.New("no columns found")
-	}
-	result := make([]interface{}, 0)
-	num := len(columns)
-	values, valuePtrs := make([]interface{}, num), make([]interface{}, num)
-	for i := range values {
-		valuePtrs[i] = &values[i]
-	}
-	structRow := buildStruct(columns)
-	for rows.Next() {
-		if err := rows.Scan(valuePtrs...); err != nil {
-			return nil, err
+func RowsToJson(rows *sql.Rows) (<-chan interface{}, <-chan error) {
+	ch := make(chan interface{})
+	chErr := make(chan error)
+	go func() {
+		defer close(ch)
+		defer close(chErr)
+		if rows == nil {
+			chErr <- errors.New("rows is nil")
+			return
 		}
-		rowVal := reflect.New(structRow).Elem()
-		// Set the values of the struct fields
-		for i, col := range columns {
-			val := reflect.ValueOf(*(valuePtrs[i].(*interface{})))
-			fieldName := normalizeName(col.Name())
-			field := rowVal.FieldByName(fieldName)
-			if field.IsValid() {
-				if val.IsValid() {
-					field.Set(val)
-				} else {
-					field.SetZero()
+		columns, err := rows.ColumnTypes()
+		if err != nil {
+			chErr <- err
+			return
+		}
+		if len(columns) == 0 {
+			chErr <- errors.New("no columns found")
+		}
+		num := len(columns)
+		values, valuePtrs := make([]interface{}, num), make([]interface{}, num)
+		for i := range values {
+			valuePtrs[i] = &values[i]
+		}
+		structRow := buildStruct(columns)
+		for rows.Next() {
+			if err := rows.Scan(valuePtrs...); err != nil {
+				chErr <- err
+				return
+			}
+			rowVal := reflect.New(structRow).Elem()
+			// Set the values of the struct fields
+			for i, col := range columns {
+				val := reflect.ValueOf(*(valuePtrs[i].(*interface{})))
+				fieldName := normalizeName(col.Name())
+				field := rowVal.FieldByName(fieldName)
+				if field.IsValid() {
+					if val.IsValid() {
+						field.Set(val)
+					} else {
+						field.SetZero()
+					}
 				}
 			}
+			ch <- rowVal.Interface()
 		}
-		result = append(result, rowVal.Interface())
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return json.Marshal(result)
+		if err := rows.Err(); err != nil {
+			chErr <- err
+		}
+	}()
+	return ch, chErr
 }
 
 // normalizeName Replaces spaces with underscores in the column names and capitalizes the first letter.
