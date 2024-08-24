@@ -66,6 +66,18 @@ func TestRowsToJson(t *testing.T) {
 			},
 			expected: []byte(`[{"Col1":"Dummy_1","Col2":1},{"Col1":"Dummy_2","Col2":null},{"Col1":"Dummy_3","Col2":3}]`),
 		},
+		{
+			name: "Success - alone row NULL values",
+			mockFunc: func() *sql.Rows {
+				db, mock, _ := sqlmock.New()
+				rows := sqlmock.NewRows([]string{"Col1", "Col2"})
+				rows.AddRow("Dummy_nil", nil)
+				mock.ExpectQuery("SELECT 1").WillReturnRows(rows)
+				rs, _ := db.Query("SELECT 1")
+				return rs
+			},
+			expected: []byte(`[{"Col1":"Dummy_nil","Col2":null}]`),
+		},
 	}
 
 	for _, tc := range tt {
