@@ -14,7 +14,7 @@ func main() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Id", "Name", "Salary", "Hours", "Date"})
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(i, faker.FirstName(), 1000.00*i+(i*678)%MOD, i*8%MOD, faker.Timestamp())
 	}
 	//add null data
@@ -30,7 +30,7 @@ func main() {
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 	fmt.Println(len(msg))
-	fmt.Println(string(msg))
+	//fmt.Println(string(msg))
 }
 
 func printMemUsage() {
