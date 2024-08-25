@@ -31,12 +31,19 @@ So, using RowsToJson function we can encode response into JSON.
 
 ### tests result for 10_000_000 rows
 
-#### standard (structure way)
-Elapsed Time = 3193<br>
-Alloc = 2600 MiB        TotalAlloc = 5387 MiB   HeapAlloc = 2600 MiB    StackInuse = 544 Kb     Sys = 3356033 Kb        NumGC = 17
+#### reflect-chan
+
+Elapsed time: 74_203 ms
+TotalAlloc = 113_988 MiB HeapAlloc = 2_849 MiB    StackInuse = 544 Kb     Sys = 4_051_259 Kb        Frees = 2_192_703_342      NumGC = 355
+
+
+#### reflect
+
+Elapsed time: 72_446 ms
+TotalAlloc = 117_737 MiB HeapAlloc = 5_201 MiB    StackInuse = 576 Kb     Sys = 8_926_631 Kb        Frees = 2_200_005_331      NumGC = 353
+
+
 #### mapping
-Elapsed Time = 31793<br>
-Alloc = 8269 MiB        TotalAlloc = 24469 MiB  HeapAlloc = 8269 MiB    StackInuse = 608 Kb     Sys = 9293062 Kb        NumGC = 25
-##### reflect
-Elapsed time: 29106<br>
-Alloc = 2871 MiB        TotalAlloc = 21040 MiB  HeapAlloc = 2871 MiB    StackInuse = 544 Kb     Sys = 4467661 Kb        NumGC = 32
+
+Elapsed time: 77_576 ms
+TotalAlloc = 122_005 MiB HeapAlloc = 9_864 MiB    StackInuse = 544 Kb     Sys = 14_229_293 Kb       Frees = 2_151_872_625      NumGC = 347
