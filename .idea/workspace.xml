@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Remove unused Process function and update memory printout">
+    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Update test and main to generate realistic SQL fake data&#10;&#10;Enhanced the testing by integrating gofakeit for generating realistic product data with additional columns. Adjusted the test rows and schema in sql2json to reflect this new structure and improved the handling of null data.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql2json/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/example/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +42,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Go Build.go build sql2json/example.executor": "Run",
     "Go Build.go build sqljson/example.executor": "Run",
+    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -53,7 +58,16 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.BenchmarkRowsToJson in sql2json">
+    <configuration name="go build sql2json/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="sqlmap" />
+      <working_directory value="$PROJECT_DIR$/sql2json" />
+      <kind value="PACKAGE" />
+      <package value="sql2json/example" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/sql2json/example/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build sqljson/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$/sql2json" />
@@ -63,8 +77,21 @@
       <filePath value="$PROJECT_DIR$/sql2json/example/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="BenchmarkRowsToJson in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="sqlmap" />
+      <working_directory value="$PROJECT_DIR$/sql2json" />
+      <kind value="PACKAGE" />
+      <package value="sql2json" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gobench" />
+      <pattern value="^\QBenchmarkRowsToJson\E$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
+        <item itemvalue="Go Build.go build sql2json/example" />
         <item itemvalue="Go Build.go build sqljson/example" />
       </list>
     </recent_temporary>
@@ -86,7 +113,10 @@
     <MESSAGE value="Add Go build run configuration" />
     <MESSAGE value="Rename module to &quot;sql2json&quot; in go.mod" />
     <MESSAGE value="Remove unused Process function and update memory printout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused Process function and update memory printout" />
+    <MESSAGE value="Update .idea/workspace.xml configuration&#10;&#10;Added AutoImportSettings, ChangeListManager, and various project configurations. Enhanced Git and GitHub integration and included run configurations and shared indexes settings." />
+    <MESSAGE value="Update schema and enhance testing and example data&#10;&#10;Refactored 'Dummy' struct in 'sql2json.go' to include more fields. Added new configurations to '.idea/workspace.xml' for Go running configurations. Enhanced test data generation in 'sql2json_test.go' for more comprehensive scenarios." />
+    <MESSAGE value="Update test and main to generate realistic SQL fake data&#10;&#10;Enhanced the testing by integrating gofakeit for generating realistic product data with additional columns. Adjusted the test rows and schema in sql2json to reflect this new structure and improved the handling of null data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update test and main to generate realistic SQL fake data&#10;&#10;Enhanced the testing by integrating gofakeit for generating realistic product data with additional columns. Adjusted the test rows and schema in sql2json to reflect this new structure and improved the handling of null data." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
