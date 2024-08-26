@@ -16,7 +16,7 @@ func main() {
 		_ = db.Close()
 	}(db)
 	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(
 			i,
 			gofakeit.Product().Name,
