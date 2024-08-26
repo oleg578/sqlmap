@@ -58,7 +58,7 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager" selected="Go Test.BenchmarkRowsToJson in sql2json">
+  <component name="RunManager" selected="Go Build.go build sql2json/example">
     <configuration name="go build sql2json/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$/sql2json" />
@@ -90,8 +90,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
         <item itemvalue="Go Build.go build sql2json/example" />
+        <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
         <item itemvalue="Go Build.go build sqljson/example" />
       </list>
     </recent_temporary>
