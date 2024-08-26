@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/brianvoe/gofakeit/v7"
@@ -10,12 +11,10 @@ import (
 )
 
 func main() {
-	Process()
-}
-
-func Process() {
 	db, mock, _ := sqlmock.New()
-	defer db.Close()
+	defer func(db *sql.DB) {
+		_ = db.Close()
+	}(db)
 	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
 	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(
@@ -43,10 +42,10 @@ func Process() {
 func printMemUsage() {
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
-	fmt.Printf("Alloc = %v MiB", m.Alloc/1024/1024)
-	fmt.Printf("\tTotalAlloc = %v MiB", m.TotalAlloc/1024/1024)
+	fmt.Printf("TotalAlloc = %v MiB", m.TotalAlloc/1024/1024)
 	fmt.Printf("\tHeapAlloc = %v MiB", m.HeapAlloc/1024/1024)
 	fmt.Printf("\tStackInuse = %v Kb", m.StackInuse/1024)
 	fmt.Printf("\tSys = %v Kb", m.Sys/1024)
+	fmt.Printf("\tFrees = %v", m.Frees)
 	fmt.Printf("\tNumGC = %v\n", m.NumGC)
 }
