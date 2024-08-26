@@ -1,4 +1,4 @@
-module sqljson
+module sql2json
 
 go 1.23.0
 
