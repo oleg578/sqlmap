@@ -3,22 +3,25 @@ package main
 import (
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/go-faker/faker/v4"
+	"github.com/brianvoe/gofakeit/v7"
 	"runtime"
 	"sql2json"
 	"time"
 )
 
 func main() {
-	const MOD = 10000007
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
-	rows := sqlmock.NewRows([]string{"Id", "Name", "Salary", "Hours", "Date"})
+	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
 	for i := 0; i < 10_000_000; i++ {
-		rows.AddRow(i, faker.FirstName(), 1000.00*i+(i*678)%MOD, i*8%MOD, faker.Timestamp())
+		rows.AddRow(
+			i,
+			gofakeit.Product().Name,
+			gofakeit.Product().Price,
+			gofakeit.IntRange(10, 1000),
+			nil,
+			gofakeit.Date().String())
 	}
-	//add null data
-	//rows.AddRow(10, nil, nil, nil, nil)
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
 	startTime := time.Now()
