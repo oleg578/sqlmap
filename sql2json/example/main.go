@@ -1,11 +1,11 @@
 package main
 
 import (
-	"database/sql"
-	"encoding/json"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/brianvoe/gofakeit/v7"
 	"runtime"
+	"sql2json"
 	"time"
 )
 
@@ -14,49 +14,30 @@ func main() {
 }
 
 func Process() {
-	fmt.Println("process ...")
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
-	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
+	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
 	for i := 0; i < 10_000_000; i++ {
-		rows.AddRow(fmt.Sprintf("Dummy_%d", i), i)
+		rows.AddRow(
+			i,
+			gofakeit.Product().Name,
+			gofakeit.Product().Price,
+			gofakeit.IntRange(10, 1000),
+			nil,
+			gofakeit.Date().String())
 	}
 	mock.ExpectQuery("SELECT").WillReturnRows(rows)
 	rs, _ := db.Query("SELECT 1")
-	// start time
 	startTime := time.Now()
-	// process rows
-	_, err := RowsToJson(rs)
+	msg, err := sql2json.RowsToJson(rs)
 	if err != nil {
 		panic(err)
 	}
-	//end time
 	endTime := time.Now()
-	fmt.Printf("Execution Time = %v ms\n", endTime.Sub(startTime).Milliseconds())
+	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
-}
-
-type Dummy struct {
-	Column1 string
-	Column2 string
-}
-
-func RowsToJson(rows *sql.Rows) ([]byte, error) {
-	var result = make([]Dummy, 0)
-	if rows == nil {
-		return nil, fmt.Errorf("rows is nil")
-	}
-	var rec = Dummy{}
-	for rows.Next() {
-		if err := rows.Scan(&rec.Column1, &rec.Column2); err != nil {
-			return nil, err
-		}
-		result = append(result, rec)
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return json.Marshal(result)
+	fmt.Println(len(msg))
+	//fmt.Println(string(msg))
 }
 
 func printMemUsage() {

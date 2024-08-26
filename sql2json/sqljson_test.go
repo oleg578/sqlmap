@@ -1,4 +1,4 @@
-package main
+package sql2json
 
 import (
 	"github.com/DATA-DOG/go-sqlmock"
