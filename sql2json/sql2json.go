@@ -3,7 +3,7 @@ package sql2json
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
+	"errors"
 )
 
 type Dummy struct {
@@ -14,7 +14,7 @@ type Dummy struct {
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	var result = make([]Dummy, 0)
 	if rows == nil {
-		return nil, fmt.Errorf("rows is nil")
+		return nil, errors.New("rows is nil")
 	}
 	var rec = Dummy{}
 	for rows.Next() {
