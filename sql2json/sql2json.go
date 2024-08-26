@@ -7,8 +7,12 @@ import (
 )
 
 type Dummy struct {
-	Column1 string
-	Column2 string
+	ID       int64
+	Product  string
+	Price    float64
+	Qty      int64
+	NullData sql.NullString
+	Date     string
 }
 
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
@@ -18,8 +22,17 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	}
 	var rec = Dummy{}
 	for rows.Next() {
-		if err := rows.Scan(&rec.Column1, &rec.Column2); err != nil {
+		if err := rows.Scan(
+			&rec.ID,
+			&rec.Product,
+			&rec.Price,
+			&rec.Qty,
+			&rec.NullData,
+			&rec.Date); err != nil {
 			return nil, err
+		}
+		if !rec.NullData.Valid {
+			rec.NullData.String = "null"
 		}
 		result = append(result, rec)
 	}
