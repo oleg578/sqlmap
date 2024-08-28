@@ -36,7 +36,6 @@ func main() {
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 	fmt.Println(len(msg))
-	//fmt.Println(string(msg))
 }
 
 func printMemUsage() {
