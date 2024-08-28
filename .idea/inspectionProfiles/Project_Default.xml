@@ -3,6 +3,7 @@
     <option name="myName" value="Project Default" />
     <inspection_tool class="GoUnhandledErrorResult" enabled="true" level="WARNING" enabled_by_default="true">
       <methods>
+        <method importPath="bytes" receiver="*Buffer" name="WriteRune" />
         <method importPath="strings" receiver="*Builder" name="WriteString" />
         <method importPath="math/rand" receiver="*Rand" name="Read" />
         <method importPath="strings" receiver="*Builder" name="Write" />
@@ -12,7 +13,6 @@
         <method importPath="bytes" receiver="*Buffer" name="WriteString" />
         <method importPath="hash" receiver="Hash" name="Write" />
         <method importPath="strings" receiver="*Builder" name="WriteByte" />
-        <method importPath="bytes" receiver="*Buffer" name="WriteRune" />
         <method importPath="database/sql" receiver="*DB" name="Close" />
       </methods>
     </inspection_tool>
