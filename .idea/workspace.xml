@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations including default settings for Go application and test run. Refined module XML structure in sqlmap.iml by cleaning up unnecessary components." />
+    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Move variable initialization inside loop to fix bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/example/main.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +135,11 @@
     <MESSAGE value="Remove commented-out debug print statement" />
     <MESSAGE value="Remove commented-out print statement in main.go example&#10;&#10;Cleaning up the code by removing the commented-out print statement that is no longer necessary. This helps keep the codebase clean and improves readability." />
     <MESSAGE value="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations including default settings for Go application and test run. Refined module XML structure in sqlmap.iml by cleaning up unnecessary components." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations including default settings for Go application and test run. Refined module XML structure in sqlmap.iml by cleaning up unnecessary components." />
+    <MESSAGE value="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations, including default settings for Go application and test run. Refined .idea/inspectionProfiles and .idea/workspace.xml to optimize project setup." />
+    <MESSAGE value="Refactor db close method in main.go" />
+    <MESSAGE value="workspace.xml" />
+    <MESSAGE value="Move variable initialization inside loop to fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move variable initialization inside loop to fix bug" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
