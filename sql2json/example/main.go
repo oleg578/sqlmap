@@ -13,7 +13,7 @@ func main() {
 	db, mock, _ := sqlmock.New()
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(
 			i,
 			gofakeit.Product().Name,
@@ -33,7 +33,7 @@ func main() {
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
 	fmt.Println(len(msg))
-	fmt.Println(string(msg))
+	//fmt.Println(string(msg))
 }
 
 func printMemUsage() {
