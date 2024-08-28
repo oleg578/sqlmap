@@ -38,20 +38,19 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	return res.Bytes(), nil
 }
 
-func SerializeRow(columns []string, values []interface{}) []byte {
+func SerializeRow(columns []string, values []sql.RawBytes) []byte {
 	var data []byte
 	buff := bytes.NewBuffer(data)
 	buff.WriteRune('{')
 	for i := range columns {
 		buff.WriteString(fmt.Sprintf("\"%v\"", spaceToUnderscore(columns[i])))
 		buff.WriteRune(':')
-		switch values[i].(type) {
-		case string:
-			buff.WriteString(fmt.Sprintf("\"%v\"", values[i]))
+		//buff.WriteString(string(values[i]))
+		switch values[i] {
 		case nil:
-			buff.WriteString(fmt.Sprint("null"))
+			buff.WriteString("null")
 		default:
-			buff.WriteString(fmt.Sprintf("%v", values[i]))
+			buff.WriteString(`"` + string(values[i]) + `"`)
 		}
 		if i < len(columns)-1 {
 			buff.WriteRune(',')
@@ -61,16 +60,9 @@ func SerializeRow(columns []string, values []interface{}) []byte {
 	return buff.Bytes()
 }
 
-//func assignCellValue(val interface{}) interface{} {
-//	if b, ok := val.([]byte); ok {
-//		return string(b)
-//	}
-//	return val
-//}
-
 // Returns slice of pointers
-func createPtrs(num int) ([]interface{}, []interface{}) {
-	vals := make([]interface{}, num)
+func createPtrs(num int) ([]sql.RawBytes, []interface{}) {
+	vals := make([]sql.RawBytes, num)
 	ptrs := make([]interface{}, num)
 	for i := range vals {
 		ptrs[i] = &vals[i]
