@@ -20,8 +20,8 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 	if rows == nil {
 		return nil, errors.New("rows is nil")
 	}
-	var rec = Dummy{}
 	for rows.Next() {
+		var rec = Dummy{}
 		if err := rows.Scan(
 			&rec.ID,
 			&rec.Product,
