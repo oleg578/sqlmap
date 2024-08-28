@@ -1,33 +1,41 @@
 package main
 
 import (
+	"context"
+	"database/sql"
 	"fmt"
-	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/brianvoe/gofakeit/v7"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
 	"runtime"
 	"sql2json"
 	"time"
 )
 
 func main() {
-	db, mock, _ := sqlmock.New()
-	defer db.Close()
-	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
-	for i := 0; i < 10_000_000; i++ {
-		rows.AddRow(
-			i,
-			gofakeit.Product().Name,
-			gofakeit.Product().Price,
-			gofakeit.IntRange(10, 1000),
-			nil,
-			gofakeit.Date().String())
-	}
-	mock.ExpectQuery("SELECT").WillReturnRows(rows)
-	rs, _ := db.Query("SELECT 1")
-	startTime := time.Now()
-	msg, err := sql2json.RowsToJson(rs)
+	db, err := sql.Open("mysql", "root:admin@tcp(127.0.0.1:3307)/test")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
+	}
+	defer db.Close()
+	q := "SELECT * FROM `dummy`"
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	con, errCon := db.Conn(ctx)
+	if errCon != nil {
+		log.Fatal(errCon)
+	}
+	defer con.Close()
+	rs, err := con.QueryContext(ctx, q)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rs.Close()
+	fmt.Println("start parse rows...")
+	startTime := time.Now()
+	msg, errRTJ := sql2json.RowsToJson(rs)
+	if errRTJ != nil {
+		panic(errRTJ)
 	}
 	endTime := time.Now()
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
