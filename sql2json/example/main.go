@@ -26,9 +26,14 @@ func main() {
 		log.Fatal(errCon)
 	}
 	defer con.Close()
-	rs, err := con.QueryContext(ctx, q)
-	if err != nil {
-		log.Fatal(err)
+	stmt, errStmt := con.PrepareContext(ctx, q)
+	if errStmt != nil {
+		log.Fatalf("stmt :%v", errStmt)
+	}
+	defer stmt.Close()
+	rs, errRs := stmt.QueryContext(ctx)
+	if errRs != nil {
+		log.Fatalf("query: %v", errRs)
 	}
 	defer rs.Close()
 	fmt.Println("start parse rows...")
