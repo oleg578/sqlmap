@@ -14,6 +14,9 @@
         <method importPath="strings" receiver="*Builder" name="WriteByte" />
         <method importPath="bytes" receiver="*Buffer" name="WriteRune" />
         <method importPath="database/sql" receiver="*DB" name="Close" />
+        <method importPath="database/sql" receiver="*Conn" name="Close" />
+        <method importPath="database/sql" receiver="*Stmt" name="Close" />
+        <method importPath="database/sql" receiver="*Rows" name="Close" />
       </methods>
     </inspection_tool>
   </profile>
