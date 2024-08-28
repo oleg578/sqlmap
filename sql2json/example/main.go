@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
@@ -38,14 +39,34 @@ func main() {
 	defer rs.Close()
 	fmt.Println("start parse rows...")
 	startTime := time.Now()
-	msg, errRTJ := sql2json.RowsToJson(rs)
-	if errRTJ != nil {
-		panic(errRTJ)
+	c, errCh := sql2json.RowsToJson(rs)
+	for {
+		select {
+		case r, ok := <-c:
+			if !ok {
+				c = nil
+			} else {
+				//fmt.Println(r)
+				if _, err := json.Marshal(r); err != nil {
+					panic(err)
+				}
+			}
+		case err, ok := <-errCh:
+			if ok {
+				log.Printf("Error: %s", err)
+			} else {
+				errCh = nil
+			}
+		}
+
+		// Exit the loop when both channels are closed
+		if c == nil && errCh == nil {
+			break
+		}
 	}
 	endTime := time.Now()
 	fmt.Printf("Elapsed time: %v ms\n", endTime.Sub(startTime).Milliseconds())
 	printMemUsage()
-	fmt.Println(len(msg))
 }
 
 func printMemUsage() {
