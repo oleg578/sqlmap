@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/brianvoe/gofakeit/v7"
@@ -12,9 +11,7 @@ import (
 
 func main() {
 	db, mock, _ := sqlmock.New()
-	defer func(db *sql.DB) {
-		_ = db.Close()
-	}(db)
+	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
 	for i := 0; i < 10_000_000; i++ {
 		rows.AddRow(
