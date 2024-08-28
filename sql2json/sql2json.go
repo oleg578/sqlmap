@@ -42,14 +42,14 @@ func SerializeRow(columns []string, values []interface{}) []byte {
 	var data []byte
 	buff := bytes.NewBuffer(data)
 	buff.WriteRune('{')
-	for i, _ := range columns {
+	for i := range columns {
 		buff.WriteString(fmt.Sprintf("\"%v\"", spaceToUnderscore(columns[i])))
 		buff.WriteRune(':')
 		switch values[i].(type) {
 		case string:
 			buff.WriteString(fmt.Sprintf("\"%v\"", values[i]))
 		case nil:
-			buff.WriteString(fmt.Sprint("\"null\""))
+			buff.WriteString(fmt.Sprint("null"))
 		default:
 			buff.WriteString(fmt.Sprintf("%v", values[i]))
 		}
@@ -61,12 +61,12 @@ func SerializeRow(columns []string, values []interface{}) []byte {
 	return buff.Bytes()
 }
 
-func assignCellValue(val interface{}) interface{} {
-	if b, ok := val.([]byte); ok {
-		return string(b)
-	}
-	return val
-}
+//func assignCellValue(val interface{}) interface{} {
+//	if b, ok := val.([]byte); ok {
+//		return string(b)
+//	}
+//	return val
+//}
 
 // Returns slice of pointers
 func createPtrs(num int) ([]interface{}, []interface{}) {
