@@ -40,7 +40,12 @@ func RowsToJson(rows *sql.Rows) ([]byte, error) {
 			field := rowVal.FieldByName(fieldName)
 			if field.IsValid() {
 				if val.IsValid() {
-					field.Set(val)
+					switch col.ScanType().Name() {
+					case "string":
+						field.SetString(string(val.Bytes()))
+					default:
+						field.Set(reflect.ValueOf(val.Interface()))
+					}
 				} else {
 					field.SetZero()
 				}
