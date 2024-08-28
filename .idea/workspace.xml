@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Move variable initialization inside loop to fix bug">
+    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Fix variable initialization inside loop to fix bug">
+      <change afterPath="$PROJECT_DIR$/db/filldb.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/mariadb-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/p.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql2json/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/example/main.go" afterDir="false" />
     </list>
@@ -12,6 +16,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -29,6 +40,10 @@
     &quot;accountId&quot;: &quot;df8825d7-88a5-4838-b709-09b878ddc6dd&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -38,31 +53,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Go Build.go build sql2json/example.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build sqljson/example.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.BenchmarkRowsToJson in sql2json.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/oleh&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.db/mariadb-compose.yml: Compose Deployment.executor": "Run",
+    "Go Build.go build main.executor": "Run",
+    "Go Build.go build sql2json/example.executor": "Run",
+    "Go Build.go build sqljson/example.executor": "Run",
+    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/oleh",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
   }
-}</component>
-  <component name="RunManager" selected="Go Build.go build sql2json/example">
+}]]></component>
+  <component name="RunManager" selected="Go Build.go build main">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$" />
       <kind />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="sqlmap" />
+      <working_directory value="$PROJECT_DIR$/db" />
+      <kind value="PACKAGE" />
+      <package value="main" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/db/filldb.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build sql2json/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -103,8 +135,22 @@
       <framework value="gotest" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="db/mariadb-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="db/mariadb-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main" />
+        <item itemvalue="Docker.db/mariadb-compose.yml: Compose Deployment" />
         <item itemvalue="Go Build.go build sql2json/example" />
         <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
         <item itemvalue="Go Build.go build sqljson/example" />
@@ -139,7 +185,8 @@
     <MESSAGE value="Refactor db close method in main.go" />
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="Move variable initialization inside loop to fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move variable initialization inside loop to fix bug" />
+    <MESSAGE value="Fix variable initialization inside loop to fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix variable initialization inside loop to fix bug" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
