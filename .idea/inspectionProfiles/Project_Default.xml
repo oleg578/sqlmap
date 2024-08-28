@@ -16,6 +16,7 @@
         <method importPath="database/sql" receiver="*DB" name="Close" />
         <method importPath="database/sql" receiver="*Tx" name="Rollback" />
         <method importPath="database/sql" receiver="*Conn" name="Close" />
+        <method importPath="database/sql" receiver="*Rows" name="Close" />
       </methods>
     </inspection_tool>
   </profile>

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Fix variable initialization inside loop to fix bug">
-      <change afterPath="$PROJECT_DIR$/db/filldb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/mariadb-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/p.sql" afterDir="false" />
+    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="Switch to MySQL database and add context management&#10;&#10;Replaces sqlmock with an actual MySQL database connection. Implements context for better query execution control and updates error handling to provide more detailed logs.">
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql2json/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/example/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Go Build.go build main">
+  <component name="RunManager" selected="Go Build.go build sql2json/example">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$" />
@@ -149,9 +148,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build sql2json/example" />
         <item itemvalue="Go Build.go build main" />
         <item itemvalue="Docker.db/mariadb-compose.yml: Compose Deployment" />
-        <item itemvalue="Go Build.go build sql2json/example" />
         <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
         <item itemvalue="Go Build.go build sqljson/example" />
       </list>
@@ -186,7 +185,10 @@
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="Move variable initialization inside loop to fix bug" />
     <MESSAGE value="Fix variable initialization inside loop to fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix variable initialization inside loop to fix bug" />
+    <MESSAGE value="Add database setup and population scripts&#10;&#10;Added a MySQL database setup using MariaDB Docker Compose, including a Go script to populate the database with dummy data using gofakeit and go-sql-driver/mysql. This commit also includes the necessary modules in go.mod and go.sum, along with the SQL table creation script." />
+    <MESSAGE value="Add database configuration file for db-docker&#10;&#10;This commit adds a new XML file under .idea/dataSources for the db-docker database configuration. The file includes details on database models, grants, server version, and various collations for character sets. This setup is necessary for the proper configuration and management of MariaDB in the development environment." />
+    <MESSAGE value="Switch to MySQL database and add context management&#10;&#10;Replaces sqlmock with an actual MySQL database connection. Implements context for better query execution control and updates error handling to provide more detailed logs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Switch to MySQL database and add context management&#10;&#10;Replaces sqlmock with an actual MySQL database connection. Implements context for better query execution control and updates error handling to provide more detailed logs." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
