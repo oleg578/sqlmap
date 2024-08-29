@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66955dd7-1ba7-49df-9549-ee624edbb453" name="Changes" comment="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend.">
+    <list default="true" id="66955dd7-1ba7-49df-9549-ee624edbb453" name="Changes" comment="Refactor benchmark test for RowsToJson.&#10;&#10;Move query execution inside loop and add error handling for RowsToJson conversion. This ensures each iteration starts with a fresh query and catches potential errors during the conversion process.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql2json/cpu.prof" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql2json/mem.prof" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/cpu.prof" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/cpu.prof" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/mem.prof" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/mem.prof" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
+    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Debug",
     "Go Test.TestRowsToJson in sql2json.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -108,9 +108,12 @@
     <MESSAGE value="Remove IntelliJ project configuration files&#10;&#10;This commit deletes several .idea directory files, including .gitignore, dataSources.xml, modules.xml, sql2json.iml, inspectionProfiles/Project_Default.xml, sqldialects.xml, and vcs.xml. These changes clean up project-specific settings and metadata, ensuring that local development environments remain consistent and isolated." />
     <MESSAGE value="Add IntelliJ IDEA project structure files&#10;&#10;This commit includes configuration files essential for setting up the IntelliJ IDEA project. It adds data source configuration, module settings, VCS mappings, and workspace properties, ensuring the project is correctly set up for MariaDB and Git integration." />
     <MESSAGE value="Add new data source configuration for MariaDB&#10;&#10;This commit introduces a new XML configuration file for the MariaDB data source in the project. The configuration includes extensive details on database grants, server version, and supported collations, improving the database management capabilities." />
-    <MESSAGE value="Add profiling output files for CPU and memory&#10;&#10;Add CPU and memory profiling output files to the repository, which will assist in performance analysis and optimization. These files can be used to identify bottlenecks and improve the application's efficiency." />
     <MESSAGE value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
+    <MESSAGE value="Add profiling output files for CPU and memory&#10;&#10;Add CPU and memory profiling output files to the repository, which will assist in performance analysis and optimization. These files can be used to identify bottlenecks and improve the application's efficiency." />
+    <MESSAGE value="Add inspection profile for Go error handling&#10;&#10;Created a new inspection profile named &quot;Project Default&quot; in the .idea directory. This profile enables error handling warnings for specific methods across various Go packages, ensuring unhandled error results are flagged." />
+    <MESSAGE value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues related to a corrupted data source in the .idea folder. These files provide necessary error logs and database model information to aid in troubleshooting persistence issues within the database storage backend." />
+    <MESSAGE value="Refactor benchmark test for RowsToJson.&#10;&#10;Move query execution inside loop and add error handling for RowsToJson conversion. This ensures each iteration starts with a fresh query and catches potential errors during the conversion process." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor benchmark test for RowsToJson.&#10;&#10;Move query execution inside loop and add error handling for RowsToJson conversion. This ensures each iteration starts with a fresh query and catches potential errors during the conversion process." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
