@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add corrupted data source files for diagnostic purposes&#10;&#10;Added two files, .reason.txt and .xml, related to a corrupted data source in the .idea folder. These files include error logs and database model information that will assist in identifying and resolving persistence issues with the database storage backend.">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/24287201-47f3-4a02-a67f-57fd9d988f3d.corrupted.20240829-120026.reason.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/24287201-47f3-4a02-a67f-57fd9d988f3d.corrupted.20240829-120026.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24287201-47f3-4a02-a67f-57fd9d988f3d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/24287201-47f3-4a02-a67f-57fd9d988f3d.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +128,8 @@
     <MESSAGE value="Refactor tests by moving DB setup outside t.Run loop.&#10;&#10;This change adjusts the test setup in sql2json_test.go to move database setup code outside the t.Run loop. This refactoring aims to streamline the tests and avoid repetitive setup, enhancing test performance and readability. Additionally, updated the workspace.xml to reflect these changes." />
     <MESSAGE value="Add IntelliJ IDEA configuration files for MariaDB integration&#10;&#10;This commit introduces new IntelliJ IDEA configuration files including `dataSources.local.xml` and modifications to `workspace.xml`. These changes configure the project for MariaDB and enhance the development environment settings, ensuring proper database and VCS integration." />
     <MESSAGE value="Add corrupted data source files for diagnostic purposes&#10;&#10;Added two files, .reason.txt and .xml, related to a corrupted data source in the .idea folder. These files include error logs and database model information that will assist in identifying and resolving persistence issues with the database storage backend." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add corrupted data source files for diagnostic purposes&#10;&#10;Added two files, .reason.txt and .xml, related to a corrupted data source in the .idea folder. These files include error logs and database model information that will assist in identifying and resolving persistence issues with the database storage backend." />
+    <MESSAGE value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
