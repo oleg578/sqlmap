@@ -1,78 +1,84 @@
 package sql2json
 
 import (
-	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/brianvoe/gofakeit/v7"
+	"context"
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
 	"testing"
 )
 
+var (
+	db                     *sql.DB
+	con                    *sql.Conn
+	stmt                   *sql.Stmt
+	errDB, errCon, errStmt error
+)
+
+func prepareRows() (rows *sql.Rows, err error) {
+	db, errDB = sql.Open("mysql", "root:admin@tcp(127.0.0.1:3307)/test")
+	if errDB != nil {
+		log.Fatal(errDB)
+	}
+	q := "SELECT * FROM `dummy` limit ?"
+	ctx := context.Background()
+	con, errCon = db.Conn(ctx)
+	if errCon != nil {
+		log.Fatal(errCon)
+	}
+	stmt, errStmt = con.PrepareContext(ctx, q)
+	if errStmt != nil {
+		log.Fatalf("stmt :%v", errStmt)
+	}
+	rs, errRS := stmt.QueryContext(ctx, 3)
+	return rs, errRS
+}
+
 func BenchmarkRowsToJson(b *testing.B) {
-	// Initialize a mock database and rows
-	db, mock, err := sqlmock.New()
-	if err != nil {
-		b.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
-	}
+	rs, errRs := prepareRows()
 	defer db.Close()
-
-	rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
-	for i := 0; i < 1; i++ {
-		rows.AddRow(
-			i,
-			gofakeit.Product().Name,
-			gofakeit.Product().Price,
-			gofakeit.IntRange(10, 1000),
-			nil,
-			gofakeit.Date().String())
+	defer con.Close()
+	defer stmt.Close()
+	if errRs != nil {
+		b.Fatal(errRs)
 	}
-
-	mock.ExpectQuery("SELECT").WillReturnRows(rows)
-
-	rs, err := db.Query("SELECT 1")
-	if err != nil {
-		b.Fatalf("an error '%s' occurred when querying the database", err)
-	}
+	defer rs.Close()
 	b.ResetTimer()
+	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		_, err = RowsToJson(rs)
+		_, err := RowsToJson(rs)
 		if err != nil {
 			b.Fatalf("an error '%s' occurred during RowsToJson execution", err)
 		}
 	}
-	b.StopTimer()
+}
+
+func mockRows() *sql.Rows {
+	rs, errRs := prepareRows()
+	if errRs != nil {
+		log.Fatal(errRs)
+	}
+	return rs
 }
 
 // TestRowsToJson mainly tests the RowsToJson function with different cases.
 func TestRowsToJson(t *testing.T) {
 	cases := []struct {
 		name          string
-		mockRows      func() *sqlmock.Rows
+		mockRows      func() *sql.Rows
 		expectedError error
 	}{
 		{
-			name: "Valid Rows",
-			mockRows: func() *sqlmock.Rows {
-				rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
-				for i := 0; i < 1; i++ {
-					rows.AddRow(
-						i,
-						gofakeit.Product().Name,
-						gofakeit.Product().Price,
-						gofakeit.IntRange(10, 1000),
-						nil,
-						gofakeit.Date().String())
-				}
-				return rows
-			},
+			name:          "Valid Rows",
+			mockRows:      mockRows,
 			expectedError: nil,
 		},
 	}
 	for _, tc := range cases {
-		db, mock, _ := sqlmock.New()
-		defer db.Close()
-
-		mock.ExpectQuery("SELECT").WillReturnRows(tc.mockRows())
-
-		rs, _ := db.Query("SELECT 1")
+		rs, err := prepareRows()
+		if err != nil {
+			log.Fatal(err)
+		}
 		t.Run(tc.name, func(t *testing.T) {
 			_, err := RowsToJson(rs)
 			if err != nil && err.Error() != tc.expectedError.Error() {
