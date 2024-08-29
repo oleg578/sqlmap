@@ -4,110 +4,68 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd118ef8-9257-466c-b52a-11bd71ba2fb7" name="Changes" comment="idea files" />
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice.">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c/storage_v2/_src_/schema/hr.Cg0AAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c/storage_v2/_src_/schema/test.kkQ2AA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqlmap.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqlmap.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Go File" />
-      </list>
-    </option>
-  </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;oleg578&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "oleg578"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:/oleg578/sqlmap.git&quot;,
-    &quot;accountId&quot;: &quot;df8825d7-88a5-4838-b709-09b878ddc6dd&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:/oleg578/sqlmap.git",
+    "accountId": "df8825d7-88a5-4838-b709-09b878ddc6dd"
   }
-}</component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2lCkK75yd70CWpv0fzwSoaPTTIz" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2lKArd0J0T9uC7QArmXk6fxn0Cv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Docker.db/mariadb-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build main.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build sql2json/example.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build sqljson/example.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.BenchmarkRowsToJson in sql2json.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/oleh&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
+    "Go Test.TestRowsToJson in sql2json.executor": "Profiler#2",
+    "Go Test.TestRowsToJson/Nil_Rows in sql2json.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/oleh",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
-  <component name="RunManager" selected="Go Build.go build sql2json/example">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="sqlmap" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build main" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="sqlmap" />
-      <working_directory value="$PROJECT_DIR$/db" />
-      <kind value="PACKAGE" />
-      <package value="main" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/db/filldb.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build sql2json/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="sqlmap" />
-      <working_directory value="$PROJECT_DIR$/sql2json" />
-      <kind value="PACKAGE" />
-      <package value="sql2json/example" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/sql2json/example/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build sqljson/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="sqlmap" />
-      <working_directory value="$PROJECT_DIR$/sql2json" />
-      <kind value="PACKAGE" />
-      <package value="sqljson/example" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/sql2json/example/main.go" />
-      <method v="2" />
-    </configuration>
+}]]></component>
+  <component name="RunManager" selected="Go Test.TestRowsToJson in sql2json">
     <configuration name="BenchmarkRowsToJson in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$/sql2json" />
@@ -119,36 +77,33 @@
       <pattern value="^\QBenchmarkRowsToJson\E$" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+    <configuration name="TestRowsToJson in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
+      <working_directory value="$PROJECT_DIR$/sql2json" />
+      <kind value="PACKAGE" />
+      <package value="sql2json" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$" />
       <framework value="gotest" />
+      <pattern value="^\QTestRowsToJson\E$" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="db/mariadb-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="db/mariadb-compose.yml" />
-        </settings>
-      </deployment>
+    <configuration name="TestRowsToJson/Nil_Rows in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="sqlmap" />
+      <working_directory value="$PROJECT_DIR$/sql2json" />
+      <kind value="PACKAGE" />
+      <package value="sql2json" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestRowsToJson\E$/^\QNil_Rows\E$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build sql2json/example" />
-        <item itemvalue="Go Build.go build main" />
-        <item itemvalue="Docker.db/mariadb-compose.yml: Compose Deployment" />
+        <item itemvalue="Go Test.TestRowsToJson in sql2json" />
+        <item itemvalue="Go Test.TestRowsToJson/Nil_Rows in sql2json" />
         <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
-        <item itemvalue="Go Build.go build sqljson/example" />
       </list>
     </recent_temporary>
   </component>
@@ -165,29 +120,8 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactoring" />
-    <MESSAGE value="Add Go build run configuration" />
-    <MESSAGE value="Rename module to &quot;sql2json&quot; in go.mod" />
-    <MESSAGE value="Remove unused Process function and update memory printout" />
-    <MESSAGE value="Update .idea/workspace.xml configuration&#10;&#10;Added AutoImportSettings, ChangeListManager, and various project configurations. Enhanced Git and GitHub integration and included run configurations and shared indexes settings." />
-    <MESSAGE value="Update schema and enhance testing and example data&#10;&#10;Refactored 'Dummy' struct in 'sql2json.go' to include more fields. Added new configurations to '.idea/workspace.xml' for Go running configurations. Enhanced test data generation in 'sql2json_test.go' for more comprehensive scenarios." />
-    <MESSAGE value="Increase test data size and comment out debug print" />
-    <MESSAGE value="Update test and main to generate realistic SQL fake data&#10;&#10;Enhanced the testing by integrating gofakeit for generating realistic product data with additional columns. Adjusted the test rows and schema in sql2json to reflect this new structure and improved the handling of null data." />
-    <MESSAGE value="Remove commented-out debug print statement" />
-    <MESSAGE value="Remove commented-out print statement in main.go example&#10;&#10;Cleaning up the code by removing the commented-out print statement that is no longer necessary. This helps keep the codebase clean and improves readability." />
-    <MESSAGE value="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations including default settings for Go application and test run. Refined module XML structure in sqlmap.iml by cleaning up unnecessary components." />
-    <MESSAGE value="Update workspace configurations for Go project&#10;&#10;Removed outdated change list comments and enhanced RunManager configurations, including default settings for Go application and test run. Refined .idea/inspectionProfiles and .idea/workspace.xml to optimize project setup." />
-    <MESSAGE value="Refactor db close method in main.go" />
-    <MESSAGE value="workspace.xml" />
-    <MESSAGE value="Move variable initialization inside loop to fix bug" />
-    <MESSAGE value="Fix variable initialization inside loop to fix bug" />
-    <MESSAGE value="Add database setup and population scripts&#10;&#10;Added a MySQL database setup using MariaDB Docker Compose, including a Go script to populate the database with dummy data using gofakeit and go-sql-driver/mysql. This commit also includes the necessary modules in go.mod and go.sum, along with the SQL table creation script." />
-    <MESSAGE value="Add database configuration file for db-docker&#10;&#10;This commit adds a new XML file under .idea/dataSources for the db-docker database configuration. The file includes details on database models, grants, server version, and various collations for character sets. This setup is necessary for the proper configuration and management of MariaDB in the development environment." />
-    <MESSAGE value="Switch to MySQL database and add context management&#10;&#10;Replaces sqlmock with an actual MySQL database connection. Implements context for better query execution control and updates error handling to provide more detailed logs." />
-    <MESSAGE value="Add new dependencies for MySQL driver and Edwards25519&#10;&#10;Added `github.com/go-sql-driver/mysql` v1.8.1 for MySQL support and `filippo.io/edwards25519` v1.1.0 as an indirect dependency. These changes are reflected in both `go.mod` and `go.sum` files." />
-    <MESSAGE value="Switch to MySQL database and add context management&#10;&#10;Replaces sqlmock with an actual MySQL database connection. Implements context management for better query execution control and updates error handling for more detailed logs. Adjust workspace settings and project files accordingly." />
-    <MESSAGE value="idea files" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea files" />
+    <MESSAGE value="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
