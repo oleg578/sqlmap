@@ -4,11 +4,24 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="current stage">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/cpu.prof" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/mem.prof" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -31,6 +44,10 @@
     &quot;accountId&quot;: &quot;df8825d7-88a5-4838-b709-09b878ddc6dd&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -40,30 +57,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Go Test.BenchmarkRowsToJson in sql2json.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestRowsToJson in sql2json.executor&quot;: &quot;Profiler#2&quot;,
-    &quot;Go Test.TestRowsToJson/Nil_Rows in sql2json.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/oleh&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build fakedb.go.executor": "Run",
+    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
+    "Go Test.TestRowsToJson in sql2json.executor": "Profiler#2",
+    "Go Test.TestRowsToJson/Nil_Rows in sql2json.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/oleh",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Go Test.BenchmarkRowsToJson in sql2json">
+    <configuration name="go build fakedb.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="sqlmap" />
+      <working_directory value="$PROJECT_DIR$/.." />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/fakedb/fakedb.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="BenchmarkRowsToJson in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
       <working_directory value="$PROJECT_DIR$/sql2json" />
@@ -100,6 +127,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
+        <item itemvalue="Go Build.go build fakedb.go" />
         <item itemvalue="Go Test.TestRowsToJson in sql2json" />
         <item itemvalue="Go Test.TestRowsToJson/Nil_Rows in sql2json" />
       </list>
@@ -129,7 +157,8 @@
     <MESSAGE value="Add IntelliJ IDEA configuration files for MariaDB integration&#10;&#10;This commit introduces new IntelliJ IDEA configuration files including `dataSources.local.xml` and modifications to `workspace.xml`. These changes configure the project for MariaDB and enhance the development environment settings, ensuring proper database and VCS integration." />
     <MESSAGE value="Add corrupted data source files for diagnostic purposes&#10;&#10;Added two files, .reason.txt and .xml, related to a corrupted data source in the .idea folder. These files include error logs and database model information that will assist in identifying and resolving persistence issues with the database storage backend." />
     <MESSAGE value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add corrupted data source files for diagnostics&#10;&#10;Included .reason.txt and .xml files to log issues with a corrupted data source in the .idea folder. These additions provide essential error logs and database model information to aid in debugging persistence problems within the database storage backend." />
+    <MESSAGE value="current stage" />
+    <option name="LAST_COMMIT_MESSAGE" value="current stage" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
