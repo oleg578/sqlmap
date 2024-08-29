@@ -71,13 +71,16 @@ func BenchmarkRowsToJson(b *testing.B) {
 	defer db.Close()
 	rows := sqlmock.NewRows([]string{"Column 1", "Column 2"})
 	rows.AddRow("Dummy_1", 1)
-	mock.ExpectQuery("SELECT").WillReturnRows(rows)
-	rs, _ := db.Query("SELECT 1")
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		_, _ = sql2json.RowsToJson(rs)
+		mock.ExpectQuery("SELECT").WillReturnRows(rows)
+		rs, _ := db.Query("SELECT 1")
+		_, err := sql2json.RowsToJson(rs)
+		if err != nil {
+			b.Fatalf("Expected no error, but got %v", err)
+		}
 	}
 
 	b.StopTimer()
