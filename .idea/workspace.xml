@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c/storage_v2/_src_/schema/hr.Cg0AAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77dfbb82-7788-40b5-94bc-315e28c16d4c/storage_v2/_src_/schema/test.kkQ2AA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqlmap.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqlmap.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql2json/sql2json.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
-    </list>
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +51,11 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected="Go Test.TestRowsToJson in sql2json">
@@ -121,7 +114,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice." />
+    <MESSAGE value="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
