@@ -40,3 +40,48 @@ func BenchmarkRowsToJson(b *testing.B) {
 	}
 	b.StopTimer()
 }
+
+// TestRowsToJson mainly tests the RowsToJson function with different cases.
+func TestRowsToJson(t *testing.T) {
+	cases := []struct {
+		name          string
+		mockRows      func() *sqlmock.Rows
+		expectedError error
+	}{
+		{
+			name: "Valid Rows",
+			mockRows: func() *sqlmock.Rows {
+				rows := sqlmock.NewRows([]string{"Id", "Product", "Price", "Qty", "NullData", "Date"})
+				for i := 0; i < 1; i++ {
+					rows.AddRow(
+						i,
+						gofakeit.Product().Name,
+						gofakeit.Product().Price,
+						gofakeit.IntRange(10, 1000),
+						nil,
+						gofakeit.Date().String())
+				}
+				return rows
+			},
+			expectedError: nil,
+		},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			db, mock, _ := sqlmock.New()
+			defer db.Close()
+
+			mock.ExpectQuery("SELECT").WillReturnRows(tc.mockRows())
+
+			rs, _ := db.Query("SELECT 1")
+
+			_, err := RowsToJson(rs)
+			if err != nil && err.Error() != tc.expectedError.Error() {
+				t.Errorf("Test %s failed: expected error %v, got %v", tc.name, tc.expectedError, err)
+			}
+			if err == nil && tc.expectedError != nil {
+				t.Errorf("Test %s failed: expected error %v, got nil", tc.name, tc.expectedError)
+			}
+		})
+	}
+}

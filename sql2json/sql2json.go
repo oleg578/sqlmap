@@ -16,10 +16,10 @@ type Dummy struct {
 }
 
 func RowsToJson(rows *sql.Rows) ([]byte, error) {
-	var result = make([]Dummy, 0)
 	if rows == nil {
 		return nil, errors.New("rows is nil")
 	}
+	var result = make([]Dummy, 0)
 	for rows.Next() {
 		var rec = Dummy{}
 		if err := rows.Scan(
