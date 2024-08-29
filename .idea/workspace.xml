@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,50 +14,50 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "oleg578"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;oleg578&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:/oleg578/sqlmap.git",
-    "accountId": "df8825d7-88a5-4838-b709-09b878ddc6dd"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:/oleg578/sqlmap.git&quot;,
+    &quot;accountId&quot;: &quot;df8825d7-88a5-4838-b709-09b878ddc6dd&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2lKArd0J0T9uC7QArmXk6fxn0Cv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Go Test.BenchmarkRowsToJson in sql2json.executor": "Run",
-    "Go Test.TestRowsToJson in sql2json.executor": "Profiler#2",
-    "Go Test.TestRowsToJson/Nil_Rows in sql2json.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/oleh",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Go Test.BenchmarkRowsToJson in sql2json.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestRowsToJson in sql2json.executor&quot;: &quot;Profiler#2&quot;,
+    &quot;Go Test.TestRowsToJson/Nil_Rows in sql2json.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/oleh&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Go Test.TestRowsToJson in sql2json">
     <configuration name="BenchmarkRowsToJson in sql2json" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="sqlmap" />
@@ -115,7 +115,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add unit tests for RowsToJson function&#10;&#10;Implemented a new test case in sql2json_test.go to validate the RowsToJson function using sqlmock. Adjusted RowsToJson function in sql2json.go to handle nil rows check properly before initializing the result slice." />
     <MESSAGE value="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
+    <MESSAGE value="Add new MariaDB data source configurations&#10;&#10;Introduced new database configuration files for MariaDB to the project. This includes the data source, SQL dialect mappings, and local storage settings, optimizing connectivity and compatibility for development." />
+    <MESSAGE value="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
