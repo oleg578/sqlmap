@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Refactor tests by moving DB setup outside t.Run loop.&#10;&#10;This change adjusts the test setup in sql2json_test.go to move database setup code outside the t.Run loop. This refactoring aims to streamline the tests and avoid repetitive setup, enhancing test performance and readability. Additionally, updated the workspace.xml to reflect these changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Refactor tests by moving DB setup outside t.Run loop.&#10;&#10;This change adjusts the test setup in sql2json_test.go to move database setup code outside the t.Run loop. This refactoring aims to streamline the tests and avoid repetitive setup, enhancing test performance and readability. Additionally, updated the workspace.xml to reflect these changes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
