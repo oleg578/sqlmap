@@ -67,14 +67,13 @@ func TestRowsToJson(t *testing.T) {
 		},
 	}
 	for _, tc := range cases {
+		db, mock, _ := sqlmock.New()
+		defer db.Close()
+
+		mock.ExpectQuery("SELECT").WillReturnRows(tc.mockRows())
+
+		rs, _ := db.Query("SELECT 1")
 		t.Run(tc.name, func(t *testing.T) {
-			db, mock, _ := sqlmock.New()
-			defer db.Close()
-
-			mock.ExpectQuery("SELECT").WillReturnRows(tc.mockRows())
-
-			rs, _ := db.Query("SELECT 1")
-
 			_, err := RowsToJson(rs)
 			if err != nil && err.Error() != tc.expectedError.Error() {
 				t.Errorf("Test %s failed: expected error %v, got %v", tc.name, tc.expectedError, err)
