@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +117,8 @@
     <MESSAGE value="Delete obsolete database configuration files&#10;&#10;Removed outdated database configuration files for MARIADB from the project. This cleanup helps prevent confusion and potential misconfiguration in future updates." />
     <MESSAGE value="Add new MariaDB data source configurations&#10;&#10;Introduced new database configuration files for MariaDB to the project. This includes the data source, SQL dialect mappings, and local storage settings, optimizing connectivity and compatibility for development." />
     <MESSAGE value="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
+    <MESSAGE value="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
