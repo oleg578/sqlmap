@@ -127,8 +127,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Test.BenchmarkRowsToJson in sql2json" />
-        <item itemvalue="Go Build.go build fakedb.go" />
         <item itemvalue="Go Test.TestRowsToJson in sql2json" />
+        <item itemvalue="Go Build.go build fakedb.go" />
         <item itemvalue="Go Test.TestRowsToJson/Nil_Rows in sql2json" />
       </list>
     </recent_temporary>
