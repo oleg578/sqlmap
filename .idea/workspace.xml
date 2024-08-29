@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
+    <list default="true" id="c5ff4b61-3fd6-4605-8820-ed58fdd2c1e5" name="Changes" comment="Refactor tests by moving DB setup outside t.Run loop.">
+      <change beforePath="$PROJECT_DIR$/sql2json/sql2json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/sql2json/sql2json_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +120,9 @@
     <MESSAGE value="Add new MariaDB data source configurations&#10;&#10;Introduced new database configuration files for MariaDB to the project. This includes the data source, SQL dialect mappings, and local storage settings, optimizing connectivity and compatibility for development." />
     <MESSAGE value="Add MariaDB data source configuration&#10;&#10;This commit introduces a new XML file configuring a MariaDB data source in the .idea directory. The file includes grants for various database permissions and collations for multiple character sets. This setup will facilitate database management and operations within the development environment." />
     <MESSAGE value="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add MariaDB data source configuration&#10;&#10;Introduced a new XML file for configuring a MariaDB data source in the .idea directory. This file includes grants for various database permissions and collations for multiple character sets, facilitating better database management in the development environment." />
+    <MESSAGE value="workspace.xml" />
+    <MESSAGE value="Refactor tests by moving DB setup outside t.Run loop." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor tests by moving DB setup outside t.Run loop." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
