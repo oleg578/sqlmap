@@ -8,25 +8,18 @@ import (
 	"testing"
 )
 
-var (
-	db                     *sql.DB
-	con                    *sql.Conn
-	stmt                   *sql.Stmt
-	errDB, errCon, errStmt error
-)
-
 func prepareRows() (rows *sql.Rows, err error) {
-	db, errDB = sql.Open("mysql", "root:admin@tcp(127.0.0.1:3307)/test")
+	db, errDB := sql.Open("mysql", "root:admin@tcp(127.0.0.1:3307)/test")
 	if errDB != nil {
 		log.Fatal(errDB)
 	}
 	q := "SELECT * FROM `dummy` limit ?"
 	ctx := context.Background()
-	con, errCon = db.Conn(ctx)
+	con, errCon := db.Conn(ctx)
 	if errCon != nil {
 		log.Fatal(errCon)
 	}
-	stmt, errStmt = con.PrepareContext(ctx, q)
+	stmt, errStmt := con.PrepareContext(ctx, q)
 	if errStmt != nil {
 		log.Fatalf("stmt :%v", errStmt)
 	}
@@ -36,9 +29,6 @@ func prepareRows() (rows *sql.Rows, err error) {
 
 func BenchmarkRowsToJson(b *testing.B) {
 	rs, errRs := prepareRows()
-	defer db.Close()
-	defer con.Close()
-	defer stmt.Close()
 	if errRs != nil {
 		b.Fatal(errRs)
 	}
