@@ -1,0 +1,13 @@
+Showing nodes accounting for 287.01MB, 98.60% of 291.07MB total
+Dropped 15 nodes (cum <= 1.46MB)
+      flat  flat%   sum%        cum   cum%
+  212.50MB 73.01% 73.01%   287.01MB 98.60%  sql2json.RowsToJson
+   74.50MB 25.60% 98.60%    74.50MB 25.60%  encoding/json.Marshal
+         0     0% 98.60%     1.52MB  0.52%  github.com/brianvoe/gofakeit/v7/data.init
+         0     0% 98.60%     1.52MB  0.52%  runtime.doInit (inline)
+         0     0% 98.60%     1.52MB  0.52%  runtime.doInit1
+         0     0% 98.60%     2.68MB  0.92%  runtime.main
+         0     0% 98.60%   287.01MB 98.60%  sql2json.BenchmarkRowsToJson
+         0     0% 98.60%   287.01MB 98.60%  testing.(*B).launch
+         0     0% 98.60%   287.01MB 98.60%  testing.(*B).runN
+
